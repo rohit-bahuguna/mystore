@@ -11,7 +11,7 @@ import Layout from './components/Layout';
 import RequireAuth from "./components/RequireAuth"
 import Home from './components/Home';
 import './css/style.css';
-import './css/responsive.css';
+ import './css/responsive.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 import Login from './components/Login';

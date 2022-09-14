@@ -34,7 +34,7 @@ const Cart = () => {
 	return (
 		<div>
 			<ToastContainer />
-			<section className="product_section layout_padding">
+			{cartData.length !== 0 ? <section className="product_section layout_padding">
 				<div className="container d-flex flex-lg-row justify-around flex-md-row">
 					<div class="container flex-grow-1">
 						{cartData &&
@@ -88,23 +88,8 @@ const Cart = () => {
 						</div>
 					</div>
 				</div>
-			</section>
-			{/* <div className="row bg-info bg-opacity-10">
-        <div className="col-6 text-center">
-          <button className="btn btn-success" onClick={placeOrder}>
-            Place Order
-          </button>
-        </div>
-        <div className="col-6 text-center">
-          <Link
-            to="/productlist"
-            className="btn btn-primary"
-            onClick={placeOrder}
-          >
-            Continue Shopping
-          </Link>
-        </div>
-      </div> */}
+			</section> : <img src="images/emptyCart.svg" style={{ width: "35vw", 'margin-left': "30%" }} alt="" />}
+
 		</div>
 	);
 };
