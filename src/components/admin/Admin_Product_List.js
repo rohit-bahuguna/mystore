@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { adminDeleteProduct } from '../utils/api/adminAPIs';
+import { adminDeleteProduct } from '../../utils/api/adminAPIs';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { setProducts } from '../redux/actions/productActions';
-import { deleteProduct } from '../redux/actions/productActions';
+import { setProducts } from '../../redux/actions/productActions';
+import { deleteProduct } from '../../redux/actions/productActions';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 

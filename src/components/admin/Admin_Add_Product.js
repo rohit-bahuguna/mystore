@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 
-import { adminAddProducts } from '../utils/api/adminAPIs';
+import { adminAddProducts } from '../../utils/api/adminAPIs';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';

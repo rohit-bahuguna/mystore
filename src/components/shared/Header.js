@@ -1,15 +1,13 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { logoutUser } from "../redux/actions/loginAction";
-import { logOut } from "../utils/api/userAPI";
+import { logoutUser } from "../../redux/actions/loginAction";
+import { logOut } from "../../utils/api/userAPI";
 import { BsCart } from "react-icons/bs";
 
 const Header = () => {
    const navigate = useNavigate();
    const loginData = useSelector((state) => state.login);
-
-
 
 
    const dispatch = useDispatch();
@@ -73,9 +71,9 @@ const Header = () => {
                         </li>
                         {loginData.status
                            ? <li className="nav-item ">
-                              <p className="nav-link text-danger" to="/login">
-                                 Welcome <span >{loginData.user.name.split(" ")[0]}</span>
-                              </p>
+                              <Link to='/profile'>
+                                 <img className="profile_picture" src={loginData.user.photo.secure_url} alt="Your Profile" />
+                              </Link>
                            </li>
                            : ""}
                         <form className="form-inline">

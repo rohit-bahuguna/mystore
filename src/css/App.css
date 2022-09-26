@@ -171,3 +171,13 @@ button {
     width: 10vw;
     margin: 5px;
 }
+
+.profile_picture {
+    width: 3vw;
+    height: 3vh;
+    border-radius: 50%;
+}
+.user {
+    width: 10vw;
+    border-radius: 50%;
+}

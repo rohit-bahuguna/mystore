@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { usersignup } from '../redux/actions/loginAction';
+import { usersignup } from '../../redux/actions/loginAction';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { signIn } from '../utils/api/userAPI';
+import { signIn } from '../../utils/api/userAPI';
 
 const Signup = () => {
 	const [user, setUser] = useState({});

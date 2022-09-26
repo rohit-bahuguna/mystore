@@ -1,8 +1,8 @@
-import React, { useRef, useState } from "react";
+import React, {  useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import "../css/App.css"
-import { adminUpdateProducts } from "../utils/api/adminAPIs";
+import "../../css/App.css"
+import { adminUpdateProducts } from "../../utils/api/adminAPIs";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const Admin_Update_Product = () => {
@@ -16,8 +16,6 @@ const Admin_Update_Product = () => {
   const selectedProduct = tempData && tempData.filter((value, index) => {
     return value._id === id
   })
-
-  const errorRef = useRef();
 
   let inittalValue = {
     name: selectedProduct[0].name,
@@ -45,7 +43,7 @@ const Admin_Update_Product = () => {
     ) {
 
       adminUpdateProducts(Product, id).then(response => {
-        //console.log(response.data)
+        console.log(response.data)
         navigate('/admin_product_list')
 
       }).catch(error => {
@@ -54,10 +52,8 @@ const Admin_Update_Product = () => {
       })
 
 
-      errorRef.current.textContent = "";
-    } else {
-      errorRef.current.textContent = "Plz fill all the values.";
-    }
+  
+    } 
   };
 
   return (

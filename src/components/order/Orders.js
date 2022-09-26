@@ -30,18 +30,18 @@ const Orders =  () => {
   return (
      <>
         
-       <section class="product_section layout_padding">
+       <section className="product_section layout_padding">
         <div className="container d-flex flex-lg-row justify-around flex-md-row">
-           <div class="container flex-grow-1">
-     { order && order.map((item , index ) =>   {return <div class="row ">
-            <div class="col-sm-12 col-md-12 col-lg-12">
-               <div class="box">
+           <div className="container flex-grow-1">
+     { order && order.map((item , index ) =>   {return <div className="row ">
+            <div className="col-sm-12 col-md-12 col-lg-12">
+               <div className="box">
                   
-                  <div class="img-box">
+                  <div className="img-box">
                        <img src={item.image} alt="" />
                       <div></div>
                   </div>
-                  <div class="detail-box">
+                  <div className="detail-box">
                      <h5>
                         {item.name}
                      </h5>

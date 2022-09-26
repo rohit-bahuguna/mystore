@@ -1,25 +1,26 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import ProductList from './components/ProductList';
-import ProductDetail from './components/ProductDetail';
-import Cart from './components/Cart';
-import Wishlist from './components/Wishlist';
-import Orders from './components/Orders';
-import Layout from './components/Layout';
-import RequireAuth from "./components/RequireAuth"
+import Header from './components/shared/Header';
+import Footer from './components/shared/Footer';
+import ProductList from './components/product/ProductList';
+import ProductDetail from './components/product/ProductDetail';
+import Cart from './components/cart/Cart';
+import Wishlist from './components/cart/Wishlist';
+import Orders from './components/order/Orders';
+import Layout from './components/protected Route/Layout';
+import RequireAuth from "./components/protected Route/RequireAuth"
 import Home from './components/Home';
 import './css/style.css';
  import './css/responsive.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
-import Login from './components/Login';
-import Admin_Add_Product from './components/Admin_Add_Product';
-import Admin_Product_List from './components/Admin_Product_List';
-import Signup from './components/Signup';
+import Login from './components/user/Login';
+import Admin_Add_Product from './components/admin/Admin_Add_Product';
+import Admin_Product_List from './components/admin/Admin_Product_List';
+import Signup from './components/user/Signup';
 
-import Admin_Update_Product from './components/Admin_update_product';
+import Admin_Update_Product from './components/admin/Admin_update_product';
+import Profile from './components/user/Profile';
 function App() {
   return (
     <div>
@@ -36,6 +37,7 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/wishlist" element={<Wishlist />} />
             <Route path="/orders" element={<Orders />} />
+            <Route path='/profile' element={<Profile/> }/>
           </Route>
 
 

@@ -15,7 +15,6 @@ const Home = () => {
 	useEffect(() => {
 		getAllProducts()
 			.then(response => {
-				console.log(response.data.products);
 				dispatch(setProducts(response.data.products));
 			})
 			.catch(error => {
@@ -25,9 +24,9 @@ const Home = () => {
 
 	return (
 		<div className="hero_area">
-			<section class="slider_section ">
+			<section className="slider_section ">
 				<div className="slider_bg_box">
-					<img src="images/slider-bg.jpg" alt="" />
+					<img src="images/slider-bg.jpg" alt="image" />
 				</div>
 				<div
 					id="customCarousel1"
@@ -180,7 +179,7 @@ const Home = () => {
 					<div className="row ">
 						{tempData &&
 							tempData.map((temp, index) =>
-								<div className="col-sm-4 col-md-4 col-lg-3">
+								<div className="col-sm-4 col-md-4 col-lg-3" key={temp._id}>
 									<Link to={`/productdetail/${temp._id}`}>
 										<div className="box">
 											<div className="img-box">

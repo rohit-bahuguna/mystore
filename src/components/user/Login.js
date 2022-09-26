@@ -1,21 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { loginUser } from "../redux/actions/loginAction";
-import { addToCart } from "../redux/actions/cartActions";
+import { loginUser } from "../../redux/actions/loginAction";
+import { addToCart } from "../../redux/actions/cartActions";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { logIn } from "../utils/api/userAPI";
+import { logIn } from "../../utils/api/userAPI";
 
 const Login = () => {
   const [user, setUser] = useState({});
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  console.log(user);
-
-
   const loginData = useSelector((state) => state.login);
   const cartData = useSelector((state) => state.cart.products);
 
@@ -65,12 +61,12 @@ const Login = () => {
 
     logIn(user)
       .then(response => {
-        console.log(response.data);
+       
         dispatch(loginUser(response.data))
         toast.success('Account Created Successfully');
       })
       .catch(error => {
-        // console.log(error);
+        console.log(error);
         toast.error(error.response.data.message);
       });
 
