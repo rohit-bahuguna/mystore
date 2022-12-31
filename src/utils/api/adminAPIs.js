@@ -1,8 +1,8 @@
 import axios from 'axios';
-let baseUrl = process.env.REACT_APP_API_URL;
+let baseUrl = `${process.env.REACT_APP_API_URL}/admin`;
 
 export const adminAddProducts = async product => {
-	const url = `${baseUrl}/admin/product/add`;
+	const url = `${baseUrl}/product/add`;
 	const response = axios.post(url, product, {
 		headers: {
 			'content-Type': 'multipart/form-data'
@@ -14,7 +14,7 @@ export const adminAddProducts = async product => {
 };
 
 export const adminGetProducts = async product => {
-	const url = `${baseUrl}/admin/product`;
+	const url = `${baseUrl}/product`;
 	const response = axios.get(url, {
 		withCredentials: true
 	});
@@ -22,7 +22,7 @@ export const adminGetProducts = async product => {
 };
 
 export const adminUpdateProducts = (product, id) => {
-	const url = `${baseUrl}/admin/product/${id}`;
+	const url = `${baseUrl}/product/${id}`;
 	const response = axios.put(url, product, {
 		headers: {
 			'content-Type': 'multipart/form-data'
@@ -34,7 +34,7 @@ export const adminUpdateProducts = (product, id) => {
 };
 
 export const adminDeleteProduct = id => {
-	const url = `${baseUrl}/admin/product/${id}`;
+	const url = `${baseUrl}/product/${id}`;
 	const response = axios.delete(url, {
 		withCredentials: true
 	});

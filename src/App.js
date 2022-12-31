@@ -21,6 +21,7 @@ import Signup from './components/user/Signup';
 
 import Admin_Update_Product from './components/admin/Admin_update_product';
 import Profile from './components/user/Profile';
+import Checkout from './components/ckeckout/Checkout';
 function App() {
   return (
     <div>
@@ -37,7 +38,9 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/wishlist" element={<Wishlist />} />
             <Route path="/orders" element={<Orders />} />
-            <Route path='/profile' element={<Profile/> }/>
+            <Route path='/profile' element={<Profile />} />
+            <Route path='/checkout' element={<Checkout />} />
+            
           </Route>
 
 

@@ -7,6 +7,7 @@ import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { logIn } from "../../utils/api/userAPI";
+import { getAllCartApi } from "../../utils/api/cartAPI";
 
 const Login = () => {
   const [user, setUser] = useState({});
@@ -14,7 +15,7 @@ const Login = () => {
   const navigate = useNavigate();
   const loginData = useSelector((state) => state.login);
   const cartData = useSelector((state) => state.cart.products);
-
+const loggedInUser = useSelector(state => state.cart.user);
 
   if (loginData.status) {
     navigate("/");
@@ -23,35 +24,32 @@ const Login = () => {
 
   const getallcart = async () => {
 
+const response = await getAllCartApi()
 
-    const url = "https://foodapibybharat.herokuapp.com/cart/getallcart";
-    const response = await axios
-      .get(url, {
-        headers: {
-          auth: loginData.token,
-        },
-      })
-      .catch((error) => console.log(error));
+    console.log(response.data.carts.cartItem);
+    console.log(loggedInUser);
+    if (response.data.carts.cartItem.user === loggedInUser) {
+      cartData.filter(value => {
+        return 
+     })
+   }
+    // if (cartData.length !== response.data.length && cartData.length < response.data.length && response.data.length !== 0) {
+    //   response.data.map((value) => {
+    //     value.order.id = value._id
 
-
-
-    if (cartData.length !== response.data.length && cartData.length < response.data.length && response.data.length !== 0) {
-      response.data.map((value) => {
-        value.order.id = value._id
-
-        dispatch(addToCart(value.order))
-
-      });
-    }
+    //     dispatch(addToCart(value.order))
+    //     return;
+    //   });
+    // }
 
   };
 
 
 
   useEffect(() => {
-    // if (loginData.status) {
-    //   getallcart();
-    // }
+    if (loginData.status) {
+      getallcart();
+    }
 
   })
 
@@ -73,6 +71,7 @@ const Login = () => {
   };
   return (
     <>
+      <ToastContainer/>
       <section className="why_section layout_padding">
         <div className="container">
 

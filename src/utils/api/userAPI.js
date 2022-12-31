@@ -57,4 +57,12 @@ export const updateUser = async user => {
 	return response;
 };
 
+export const updateUserShippingInfo = async userInfo => {
+	const url = `${baseUrl}/userdashboard/updateshippinginfo`;
+	const response = await axios.put(url, userInfo, {
+		withCredentials: true
+	});
+	return response;
+};
+
 // get all products

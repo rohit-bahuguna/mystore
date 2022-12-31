@@ -7,8 +7,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const ShowCart = (props) => {
   
-
-  const { name,  image, id  , price} = props.product;
+console.log(props.product);
+  const { name, photos ,  _id  , price} = props.product;
   const loginData = useSelector((state) => state.login);
  
     
@@ -17,7 +17,7 @@ const ShowCart = (props) => {
 
 
   const removeItem = async ()=>{
-    const url = "https://foodapibybharat.herokuapp.com/cart/deletefromcart/"+id
+    const url = "https://foodapibybharat.herokuapp.com/cart/deletefromcart/"+_id
 
     const response = await axios.delete(url, {
       headers: {
@@ -27,7 +27,7 @@ const ShowCart = (props) => {
 
     
     if(response.data !== null){
-      dispatch(removeFromCart(response.data._id))
+      dispatch(removeFromCart(response.data.__id))
     }
     
   }
@@ -36,13 +36,13 @@ const ShowCart = (props) => {
     if(loginData.status){
       removeItem();
       toast.info("Removed from cart")
-    } else if (id === undefined) {
-      let newid =   props.product._id
-      dispatch(removeFromCart(newid))
+    } else if (_id === undefined) {
+      let new_id =   props.product.__id
+      dispatch(removeFromCart(new_id))
       toast.info("Removed from cart")
     }else {
       
-        dispatch(removeFromCart(id))
+        dispatch(removeFromCart(_id))
       toast.info("Removed from cart")
    }
    
@@ -72,7 +72,7 @@ const ShowCart = (props) => {
                      </div>
                   </div>
                   <div class="img-box">
-                       <img src={image} alt="" />
+                       <img src={photos[0]} alt="" />
                       <div></div>
                   </div>
                   <div class="detail-box">

@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { getOneProducts } from "../../utils/api/productAPIs";
 import { useDispatch, useSelector } from "react-redux";
 import { setSelectedProduct } from "../../redux/actions/productDetailActions";
 import { addToCart } from "../../redux/actions/cartActions";
+import { addToCartApi } from "../../utils/api/cartAPI"; 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const ProductDetail = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   const { id } = useParams();
 
 
   const [SelectedProduct, setSelectedProduct] = useState({})
   const ratingStars = ["⭐", "⭐⭐", "⭐⭐⭐", "⭐⭐⭐⭐", "⭐⭐⭐⭐⭐"]
-  //console.log(SelectedProduct);
+  
   const loginData = useSelector((state) => state.login);
 
   const cartData = useSelector((state) => state.cart);
@@ -31,36 +33,14 @@ const ProductDetail = () => {
 
   }, []);
 
-  const addtoCart = async () => {
+  const addProductToCart = async () => {
+    if (loginData.status) {
+     const response = await addToCartApi(SelectedProduct._id)
+    console.log(response.data.carts);
+    }
+   
     dispatch(addToCart(SelectedProduct));
     toast.success("product added to cart")
-    // // add to cart api call from here
-    // if (loginData.status) {
-    //   const url = "https://foodapibybharat.herokuapp.com/cart/addtocart";
-    //   let orders = {
-    //     id: SelectedProduct._id,
-    //     name: SelectedProduct.name,
-    //     food_type: SelectedProduct.food_type,
-    //     price: SelectedProduct.price,
-    //     description: SelectedProduct.description,
-    //     image: SelectedProduct.image,
-    //     category: SelectedProduct.category,
-    //     quantity: 1,
-
-    //   };
-
-
-
-    //   const response = await axios
-    //     .post(url, orders, {
-    //       headers: {
-    //         auth: loginData.loginUsername.token,
-    //       },
-    //     })
-    //     .catch((err) => console.log("erroe----->", err));
-    //     toast.success("product added to cart")
-
-    // }
   };
   function isEmpty(SelectedProduct) {
     return Object.keys(SelectedProduct).length === 0;
@@ -106,7 +86,7 @@ const ProductDetail = () => {
                         {cartData.products.map((temp) => temp._id).indexOf(SelectedProduct._id) !== -1 ?
                           <Link to="/cart"><button type="button" className="btn btn-outline-danger" >Go to Cart</button></Link>
                           :
-                          <button type="button" className="btn btn-outline-danger" onClick={addtoCart}>
+                          <button type="button" className="btn btn-outline-danger" onClick={addProductToCart}>
                             Add to Cart
                           </button>
                         }

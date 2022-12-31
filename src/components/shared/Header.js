@@ -5,6 +5,7 @@ import { logoutUser } from "../../redux/actions/loginAction";
 import { logOut } from "../../utils/api/userAPI";
 import { BsCart } from "react-icons/bs";
 
+
 const Header = () => {
    const navigate = useNavigate();
    const loginData = useSelector((state) => state.login);
@@ -18,6 +19,7 @@ const Header = () => {
       logOut().then(response => {
          console.log(response.data);
          dispatch(logoutUser(response.data))
+         navigate('/')
       }).catch(error => console.log(error))
 
 
@@ -59,6 +61,7 @@ const Header = () => {
                         <li className="nav-item">
                            <Link className="nav-link" to="/cart"> <BsCart /> Cart</Link>
                         </li>
+                       
                         <li className="nav-item">
                            {loginData.status ? <Link to="#" className="nav-link" onClick={handleAuth}>
                               Log Out

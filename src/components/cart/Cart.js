@@ -15,16 +15,7 @@ const Cart = () => {
 
 	const orderNow = async () => {
 		if (loginData.status && cartData.length !== 0) {
-			const url = 'https://foodapibybharat.herokuapp.com/order/createorder';
-
-			const response = await axios.post(url, cartData, {
-				headers: {
-					auth: loginData.token
-				}
-			});
-
-			toast.success('Order Placed Successfully');
-			dispatch(clearCart('all'));
+			navigate('/checkout');
 		} else {
 			navigate('/login');
 		}
@@ -41,6 +32,7 @@ const Cart = () => {
 								{cartData &&
 									cartData.map((item, index) => {
 										price += item.price;
+
 										return <ShowCart product={item} key={item.name + index} />;
 									})}
 							</div>
@@ -79,6 +71,7 @@ const Cart = () => {
 														Shop More
 													</button>
 												</Link>
+
 												<button
 													type="button"
 													onClick={orderNow}

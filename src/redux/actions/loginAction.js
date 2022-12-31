@@ -14,6 +14,10 @@ export const usersignup = username => {
 	};
 };
 
+export const userInfo = shippingInfo => {
+	return { type: actionTypes.UPDATEUSERINFO, payload: shippingInfo };
+};
+
 export const logoutUser = logOutData => {
 	return { type: actionTypes.LOGOUT, payload: logOutData };
 };
