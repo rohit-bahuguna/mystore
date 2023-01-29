@@ -14,7 +14,7 @@ import './css/style.css';
  import './css/responsive.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
-import Login from './components/user/Login';
+import SignIn from './components/user/SignIn';
 import Admin_Add_Product from './components/admin/Admin_Add_Product';
 import Admin_Product_List from './components/admin/Admin_Product_List';
 import Signup from './components/user/Signup';
@@ -31,7 +31,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/signin" element={<SignIn/>} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/productlist" element={<ProductList />} />
             <Route path="/productdetail/:id" element={<ProductDetail />} />

@@ -72,7 +72,7 @@ console.log(props.product);
                      </div>
                   </div>
                   <div class="img-box">
-                       <img src={photos[0]} alt="" />
+                       <img src={photos[0].secure_url} alt="" />
                       <div></div>
                   </div>
                   <div class="detail-box">

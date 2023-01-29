@@ -12,12 +12,12 @@ const Cart = () => {
 	const dispatch = useDispatch();
 	const loginData = useSelector(state => state.login);
 	const cartData = useSelector(state => state.cart.products);
-
+	console.log(cartData);
 	const orderNow = async () => {
 		if (loginData.status && cartData.length !== 0) {
 			navigate('/checkout');
 		} else {
-			navigate('/login');
+			navigate('/signin');
 		}
 	};
 

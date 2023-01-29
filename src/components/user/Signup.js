@@ -75,7 +75,7 @@ const Signup = () => {
 										<input
 											className="rounded-pill"
 											type="submit"
-											value="Sign in"
+											value="Sign Up"
 											onClick={signUpFn}
 										/>
 									</fieldset>

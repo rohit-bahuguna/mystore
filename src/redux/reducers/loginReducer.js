@@ -16,7 +16,12 @@ export const loginReducer = (state = {}, action) => {
 			console.log(payload);
 			return { ...state, user: payload };
 		case actionTypes.LOGOUT:
-			return { ...state, user: null, status: !payload.success, token: null };
+			return {
+				...state,
+				user: { name: '', email: '' },
+				status: !payload.success,
+				token: null
+			};
 		default:
 			return state;
 	}

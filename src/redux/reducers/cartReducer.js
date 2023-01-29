@@ -8,8 +8,8 @@ export const cartReducer = (state = tempState, action) => {
 	const { type, payload } = action;
 	switch (type) {
 		case actionTypes.ADDTOCART:
-			let temp = [...state.products, payload];
-			return { products: temp, user: payload.user };
+			let temp = [...state.products, ...payload];
+			return { products: [...temp], user: payload.user };
 		case actionTypes.REMOVEFROMCART:
 			let item = state.products;
 			const newItems = item.filter((value, index) => {

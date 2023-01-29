@@ -5,25 +5,12 @@ import { Link } from "react-router-dom";
 
 const ProductList = () => {
 
-  
+
 
 
   const tempData = useSelector((state) => state.allProducts.products);
 
- 
-  // const fetchProductsList = () => {
-  //   fetch("https://foodapibybharat.herokuapp.com/product/getfood")
-  //     .then((data) => data.json())
-  //     .then((response) => {
 
-
-  //       dispatch(setProducts(response));
-  //     });
-  // };
-
-  // useEffect(() => {
-  //   fetchProductsList();
-  // }, []);
 
   return (
     <>

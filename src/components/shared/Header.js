@@ -30,7 +30,7 @@ const Header = () => {
       //     navigate("/");
       //  } else {
 
-      //    navigate("/login");
+      //    navigate("/signin");
       //  }
    };
 
@@ -64,10 +64,10 @@ const Header = () => {
                        
                         <li className="nav-item">
                            {loginData.status ? <Link to="#" className="nav-link" onClick={handleAuth}>
-                              Log Out
+                              Sign Out
 
-                           </Link> : <Link className="nav-link " to="/login">
-                              Log in
+                           </Link> : <Link className="nav-link " to="/signin">
+                              Sign in
 
                            </Link>}
 

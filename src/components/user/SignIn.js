@@ -9,8 +9,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import { logIn } from "../../utils/api/userAPI";
 import { getAllCartApi } from "../../utils/api/cartAPI";
 
-const Login = () => {
+const SignIn = () => {
   const [user, setUser] = useState({});
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const loginData = useSelector((state) => state.login);
@@ -27,17 +28,17 @@ const loggedInUser = useSelector(state => state.cart.user);
 const response = await getAllCartApi()
 
     console.log(response.data.carts.cartItem);
-    console.log(loggedInUser);
-    if (response.data.carts.cartItem.user === loggedInUser) {
-      cartData.filter(value => {
-        return 
-     })
-   }
+    dispatch(addToCart(response.data.carts.cartItem))
+  //   if (response.data.carts.cartItem.user === loggedInUser) {
+  //     cartData.filter(value => {
+  //       return 
+  //    })
+  //  }
     // if (cartData.length !== response.data.length && cartData.length < response.data.length && response.data.length !== 0) {
     //   response.data.map((value) => {
     //     value.order.id = value._id
 
-    //     dispatch(addToCart(value.order))
+        
     //     return;
     //   });
     // }
@@ -53,18 +54,18 @@ const response = await getAllCartApi()
 
   })
 
-  const loginFn = async (e) => {
-
+  const signInFn = async (e) => {
+setLoading(true)
     e.preventDefault()
 
     logIn(user)
       .then(response => {
        
         dispatch(loginUser(response.data))
-        toast.success('Account Created Successfully');
+       setLoading(false)
       })
       .catch(error => {
-        console.log(error);
+        setLoading(false)
         toast.error(error.response.data.message);
       });
 
@@ -78,17 +79,17 @@ const response = await getAllCartApi()
           <div className="row">
             <div className="col-lg-8 offset-lg-2">
               <div className="full">
-                <form >
+                <form  >
                   <fieldset>
 
                     email: <input className="text-lowercase" type="email" onChange={(e) => setUser({ ...user, email: e.target.value })} name="password" required />
 
                     Password: <input type="password" onChange={(e) => setUser({ ...user, password: e.target.value })} name="password" required />
 
-                    <input className="rounded-pill" type="submit" value="Sign In" onClick={(e) => { loginFn(e) }} />
-                    <br />
+                    <input className="rounded-pill" type="submit" value={loading ? "Signing In" : "Sign In"}  disabled={ loading} onClick={(e)=> signInFn(e) }/>
+                  <br/>
                     <Link to="/signup">
-                      <input className="rounded-pill" type="submit" value="New Here Create Account" />
+                      <input className="rounded-pill" type="submit" value="New Here Create Account"  />
                     </Link>
                   </fieldset>
 
@@ -105,5 +106,5 @@ const response = await getAllCartApi()
   );
 };
 
-export default Login;
+export default SignIn;
 
