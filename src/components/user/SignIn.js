@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { loginUser } from "../../redux/actions/loginAction";
-import { addToCart } from "../../redux/actions/cartActions";
+import { addToCartFromAPI } from "../../redux/actions/cartActions";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -27,21 +27,11 @@ const loggedInUser = useSelector(state => state.cart.user);
 
 const response = await getAllCartApi()
 
-    console.log(response.data.carts.cartItem);
-    dispatch(addToCart(response.data.carts.cartItem))
-  //   if (response.data.carts.cartItem.user === loggedInUser) {
-  //     cartData.filter(value => {
-  //       return 
-  //    })
-  //  }
-    // if (cartData.length !== response.data.length && cartData.length < response.data.length && response.data.length !== 0) {
-    //   response.data.map((value) => {
-    //     value.order.id = value._id
-
-        
-    //     return;
-    //   });
-    // }
+    console.log(response);
+    const cartItems = response.data.carts.cartItem 
+    console.log(cartItems);
+    dispatch(addToCartFromAPI(cartItems))
+  
 
   };
 

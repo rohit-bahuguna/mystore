@@ -19,28 +19,29 @@ const ProductDetail = () => {
   const loginData = useSelector((state) => state.login);
 
   const cartData = useSelector((state) => state.cart);
-
+console.log(cartData);
 
   useEffect(() => {
     getOneProducts(id).then(response => {
-     // console.log((response.data.product));
-      response.data.product.photos = response.data.product.photos.map(value => {
-        return value.secure_url
-      })
+      console.log((response.data.product));
+      // response.data.product.photos = response.data.product.photos.map(value => {
+      // //   return value.secure_url
+      // // })
 
-      setSelectedProduct({ ...response.data.product, selectedImage: response.data.product.photos[0], ratingStars })
+      setSelectedProduct({ ...response.data.product, ratingStars })
     }).catch(error => console.log(error))
 
   }, []);
 
   const addProductToCart = async () => {
+     dispatch(addToCart(SelectedProduct));
+    toast.success("product added to cart")
     if (loginData.status) {
      const response = await addToCartApi(SelectedProduct._id)
     console.log(response.data.carts);
     }
    
-    dispatch(addToCart(SelectedProduct));
-    toast.success("product added to cart")
+   
   };
   function isEmpty(SelectedProduct) {
     return Object.keys(SelectedProduct).length === 0;
@@ -61,14 +62,14 @@ const ProductDetail = () => {
                       <div className="detail_showCash">
                         {
                           !isEmpty(SelectedProduct) && SelectedProduct.photos.map(value => {
-                            return <img key={value} src={value} alt={SelectedProduct.name} className="img-show" onClick={(e) => { setSelectedProduct({ ...SelectedProduct, selectedImage: e.target.currentSrc }) }} />
+                            return <img key={value.id} src={value.secure_url} alt={SelectedProduct.name} className="img-show" onClick={(e) => { setSelectedProduct({ ...SelectedProduct, selectedImage: e.target.currentSrc }) }} />
                           })
                         }
 
                       </div>
                       <div>
 
-                        <img src={SelectedProduct.selectedImage} alt="" className="img-show_big" />
+                        <img src={SelectedProduct.photos[0].secure_url} alt="" className="img-show_big" />
                       </div>
                     </div>
 
@@ -83,7 +84,7 @@ const ProductDetail = () => {
                         <h6>
                           Price :  {SelectedProduct.price}
                         </h6>
-                        {cartData.products.map((temp) => temp._id).indexOf(SelectedProduct._id) !== -1 ?
+                        {cartData && cartData.products.map((temp) => temp._id).indexOf(SelectedProduct._id) !== -1 ?
                           <Link to="/cart"><button type="button" className="btn btn-outline-danger" >Go to Cart</button></Link>
                           :
                           <button type="button" className="btn btn-outline-danger" onClick={addProductToCart}>

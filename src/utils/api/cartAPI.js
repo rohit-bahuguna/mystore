@@ -20,3 +20,10 @@ export const getAllCartApi = async () => {
 	});
 	return response;
 };
+
+export const removeItemsFromCart = async id => {
+	const url = `${baseUrl}/deletefromcart/${id}`;
+	return await axios.delete(url, {
+		withCredentials: true
+	});
+};

@@ -6,10 +6,12 @@ const tempState = {
 };
 export const cartReducer = (state = tempState, action) => {
 	const { type, payload } = action;
+
 	switch (type) {
 		case actionTypes.ADDTOCART:
-			let temp = [...state.products, ...payload];
-			return { products: [...temp], user: payload.user };
+			return { products: [...state.products, payload], user: payload.user };
+		case actionTypes.ADDTOCART_FROMAPI:
+			return { ...state, products: [...payload] };
 		case actionTypes.REMOVEFROMCART:
 			let item = state.products;
 			const newItems = item.filter((value, index) => {

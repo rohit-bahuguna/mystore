@@ -5,47 +5,26 @@ import { removeFromCart } from "../../redux/actions/cartActions";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { removeItemsFromCart } from "../../utils/api/cartAPI";
 const ShowCart = (props) => {
   
 console.log(props.product);
-  const { name, photos ,  _id  , price} = props.product;
+  const { name, photos ,  _id  , price , user } = props.product;
   const loginData = useSelector((state) => state.login);
  
     
   const dispatch = useDispatch();
+console.log(props.product);
 
 
+  
 
-  const removeItem = async ()=>{
-    const url = "https://foodapibybharat.herokuapp.com/cart/deletefromcart/"+_id
-
-    const response = await axios.delete(url, {
-      headers: {
-        auth: loginData.token,
-      },
-    }).catch((error) => console.log(error.massage))
-
-    
-    if(response.data !== null){
-      dispatch(removeFromCart(response.data.__id))
-    }
-    
-  }
-
- const removeItemfn =  () => {
-    if(loginData.status){
-      removeItem();
-      toast.info("Removed from cart")
-    } else if (_id === undefined) {
-      let new_id =   props.product.__id
-      dispatch(removeFromCart(new_id))
-      toast.info("Removed from cart")
-    }else {
-      
-        dispatch(removeFromCart(_id))
-      toast.info("Removed from cart")
-   }
-   
+ const removeItemfn =  (id) => {
+  console.log(id);
+   dispatch(removeFromCart(id))
+   removeItemsFromCart(id).then((res) => {
+     console.log(res.data);
+   })
  }
 
   return (
@@ -60,7 +39,7 @@ console.log(props.product);
                <div class="box">
                   <div class="option_container">
                      <div class="options" >
-                  <button   type="button" class=" btn btn-outline-danger " onClick={removeItemfn}>  
+                  <button   type="button" class=" btn btn-outline-danger " id={_id} onClick={(e) =>removeItemfn(e.target.id)}>  
                            Remove
                        </button>
                        <br/>
